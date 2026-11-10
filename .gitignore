@@ -29,3 +29,21 @@ venv/
 /results/research_alignment_v1/ui_policy_index.json
 /results/research_alignment_v1_smoke/ui_policy_index.json
 /results/research_alignment_v4_final_confirmation/run_metadata.json
+
+# Keep superseded local phase runs/checkpoints out of the curated public tree.
+# Already tracked selected v4 checkpoints and validation/final artifacts remain
+# versioned; these rules only prevent accidental addition of local-only files.
+/results/checkpoints/
+/results/diagnostics/
+/results/evaluation_seed7.json
+/results/training_seed7.jsonl
+/results/phase22*/
+/results/phase23*/
+/results/phase24*/
+/results/phase25*/
+/results/phase26_final/
+/results/phase28_final/
+/results/phase29_final/
+/results/research_alignment_v1/
+/results/research_alignment_v1_smoke/
+/results/research_alignment_v3_confirmatory_protocol/
