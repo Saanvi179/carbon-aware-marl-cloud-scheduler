@@ -1,0 +1,62 @@
+# Historical Phase 3 data sources and provenance
+
+**Scope note:** This file records the real-source inputs used for historical Phase 3 trace experiments. The authoritative v4 confirmation uses newly generated synthetic workloads and synthetic dynamic carbon profiles; none of the trace or 2023 carbon files described below is the v4 holdout. For public distribution, third-party raw inputs, derived workload/profile datasets, and trace-derived run outputs are excluded until the original providers' redistribution terms are verified. Any existing local copies remain local and are not removed by this publication process.
+
+The original repositories are not cloned into this project or modified. For a local historical-data reproduction, place lawfully obtained inputs under `data/raw/phase3/`; preprocessing writes derived inputs to `data/processed/phase3/`. These directories are ignored by Git in the public release. The preprocessing script records SHA-256 hashes and selected IDs in its local manifest.
+
+## Selected workload source
+
+**DCcluster-Opt / SustainCluster:** [official repository](https://github.com/HewlettPackard/sustain-cluster), Alibaba 2020 processed trace at [`result_df_full_year_2020.zip`](https://github.com/HewlettPackard/sustain-cluster/blob/main/data/workload/alibaba_2020_dataset/result_df_full_year_2020.zip). Its GitHub file page reports **72.1 MB**; downloaded archive size is **75,625,706 bytes** (72.1 MiB). The archive contains one `result_df_full_year_2020.pkl` member of **142,336,499 bytes** uncompressed. Only the ZIP is retained as raw data; preprocessing reads it in place and outputs 24 tasks.
+
+The pickle has 37,552 rows and columns `interval_15m` and `tasks_matrix`. The stored timestamps span 2020-01-01 00:00 UTC through 2021-01-26 23:45 UTC; this differs from the upstream Alibaba trace README's description of source capture in July–August 2020. The importer trusts the packaged timestamps and records the discrepancy rather than rewriting dates. `tasks_matrix` records include job ID, duration in minutes, CPU and GPU percentages, memory GB, GPU memory GB, bandwidth GB, and auxiliary weekday fields. The subset keeps duration, CPU/GPU, memory and bandwidth-derived input size; fractional CPU/GPU requirements are retained.
+
+Sampling is deterministic: three non-overlapping 24-hour windows beginning 2020-01-01, 2020-01-02 and 2020-01-08; eight jobs selected at evenly spaced 3-hour bins per window. Within each bin, the first task in source order that fits the model's ingress capacity is used. Filters are runtime ≤7,200 s, CPU ≤64 cores, GPU ≤8 units, memory ≤256 GB, positive CPU/runtime, and nonnegative GPU/memory/data size. There is no deadline or source-region-of-origin field. The benchmark therefore uses an explicit **3,600 s post-runtime deadline slack** and assigns every task to the `north` ingress region. These are scenario assumptions, not trace facts.
+
+The primary Alibaba GPU trace README asks users to cite Weng et al., “MLaaS in the Wild: Workload Analysis and Scheduling in Large-Scale Heterogeneous GPU Clusters,” NSDI 2022, but does not state a standard license identifier. SustainCluster describes the source under CC BY 4.0, while its repository notes third-party data retain their own terms. Treat CC BY 4.0 as a secondary-source description, not a verified license grant from Alibaba, and verify the original terms before redistribution. The raw archive SHA-256 is `907090a42863c46887cdf9c66f99ac77b2a3b351544362d8c6c34b9ace6754a9`.
+
+## Selected carbon source
+
+**DCcluster-Opt / SustainCluster:** [regional carbon data](https://github.com/HewlettPackard/sustain-cluster/tree/main/data/carbon_intensity), sourced by the project from Electricity Maps. The benchmark uses 2023 hourly CSVs for New York ISO (NY), California ISO (CA), and ERCOT Texas (TX). Each contains 8,760 rows (plus header) with UTC time, zone, direct intensity, lifecycle intensity, renewable/low-carbon percentages, source, `Data Estimated`, and estimation-method fields. The chosen measure is **direct gCO₂e/kWh**; the lifecycle column is not used.
+
+| Model region | Upstream zone | Downloaded bytes | SHA-256 | Source rows flagged estimated |
+|---|---|---:|---|---:|
+| north | US-NY-NYIS | 805,101 | `4e0589ba72008ebcd8437385fa1b335b59f6c3acb0433b6184ac3239c6af4c92` | 49 |
+| west | US-CAL-CISO | 749,471 | `44bafab775c6b0d4762b1dc971eb293cfea154f80799a5230f9268d32e1ad55b` | 2 |
+| east | US-TEX-ERCO | 1,012,586 | `e98066048a85422d39c877ffd281d1612d698b40e2c355a00ed0a49acaba2954` | 0 |
+
+Fifty-one rows are flagged estimated by upstream (49 + 2 + 0) and retained exactly; no missing numerical values were found. Missing or invalid timestamps/intensities and non-hourly sequences cause preprocessing to fail rather than be filled. For the 15-minute simulator, each hourly observation is held for four slots (zero-order hold). This is a stated resolution mapping, not interpolated data. The source data is attributed to Electricity Maps; SustainCluster states the provider data is generally under ODbL and users must follow the applicable original-data terms. SustainCluster's own code and directly generated/processed materials are MIT. This license statement is not a substitute for checking Electricity Maps terms for any redistribution.
+
+## Other inspected sources and compatibility
+
+### SustainDC (`HewlettPackard/dc-rl`)
+
+The official [SustainDC repository](https://github.com/HewlettPackard/dc-rl) is MIT-licensed code. Its workload directory exposes Alibaba CPU hourly CSV files (one is 8,905 lines / 200 KB) and Google CPU hourly CSV files (8,761 lines / 203 KB). Its documented schema is an unnamed hourly index plus `cpu_load` as a fraction in [0,1], with 8,760 hours per year. These are aggregate CPU utilization profiles, not individual AI jobs, GPU/CPU/memory requests, data sizes, or per-task deadlines, so they were not converted into fake jobs.
+
+SustainDC carbon CSVs are hourly EIA-derived energy-mix series with `timestamp`, fuel fields and `avg_CI`; its README describes `avg_CI` in gCO₂/kWh and says the files are extracted from EIA's bulk EBA archive. This differs from the selected Electricity Maps direct gCO₂e/kWh series, so it was not mixed into this run. Its weather inputs are EPW hourly files. These source data terms are separate from the SustainDC repository's MIT software license.
+
+### Network and transmission inputs in SustainCluster
+
+The official repository contains three provider transmission-cost CSV matrices: AWS (2.48 KB), Azure (2.95 KB), and GCP (1.14 KB). They describe provider-specific per-GB costs; those are volatile pricing inputs. Its `data/network_cost/network_delay.py` embeds throughput (Mbps) and RTT (ms) by provider and macro-region, attributed to Persico et al., IEEE GLOBECOM 2016. Delay is calculated as `size_GB × 8 × 1000 / throughput_Mbps + RTT_ms / 1000`; US subregions collapse into one macro-region, where the code uses a 1 Gbps same-cluster assumption. These parameters are accessible, but not adopted in Phase 3 because the three specific US zones map to the same macro-cluster and the task source itself has no matching US origin. The existing network model remains an explicit simulator assumption.
+
+## Reproduction and outputs
+
+`python -m experiments.preprocess_phase3` reads the raw ZIP and three raw carbon files and writes `alibaba_workloads.json`, `carbon_profiles_2023.json`, and `phase3_manifest.json`. It requires pandas (now in `requirements.txt`). `python -m experiments.run_phase3` evaluates FCFS, greedy carbon and the exact small-instance MILP on three trace windows and three synthetic comparison instances. Full results and limitations are in `results/phase3/PHASE3_REPORT.md`.
+
+No data from SustainDC or SustainCluster original repositories was modified. The downloaded data consists only of the selected bounded 2023 regional profiles and one 72.1 MB processed workload archive. The larger original Alibaba trace tables (including hundreds of MB per archive) were not downloaded.
+
+## Phase 3.2 audit and additional source review
+
+The official [SustainCluster workload documentation](https://github.com/HewlettPackard/sustain-cluster#41-ai-workloads-alibaba-gpu-cluster-trace) says the underlying Alibaba PAI source spans July–August 2020 and that its full-year processed workload is temporally extended by repeating daily and weekly patterns. The local packaged pickle has 37,552 interval rows from 2020-01-01 to 2021-01-26 and 1,300,144 task records. A deterministic 16,720-record field sample found task-embedded timestamps in 1970 while `interval_15m` values lie in the package 2020–2021 axis; these are not validated wall-clock dates. Eighty of 37,551 adjacent interval steps are 30 minutes rather than 15 minutes. They are retained with no imputation. Details are in the local-only `data/processed/phase32/source_audit.json` and [`PHASE32_DATASET_NOTES.md`](../archive/historical_docs/PHASE32_DATASET_NOTES.md). Phase 3.2 calls these package-axis cohorts rather than independent historical months.
+
+### Additional workload candidate: Alibaba GPU-sharing trace 2023
+
+The primary [Alibaba clusterdata repository](https://github.com/alibaba/clusterdata) identifies the [GPU 2023 trace](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2023) as a production Kubernetes GPU-sharing workload. The default pod CSV is 8,153 lines / 562 KB with 8,152 pod records; the GPU node inventory is 1,214 lines / 41.4 KB. Schema includes `cpu_milli`, `memory_mib`, `num_gpu`, `gpu_milli`, `gpu_spec`, QoS, pod phase and relative `creation_time`, `scheduled_time`, and `deletion_time` in seconds. These fields could support resource/duration modeling after lifecycle rules are validated, but the schema does not provide task input size for migration latency and the inspected docs do not establish an absolute UTC anchor. The repo README permits research/study use and asks citation, but no explicit standard license identifier was found in the dataset folder. It was not downloaded or inserted into the benchmark; missing transfer data, calendar mapping and license verification would otherwise force unverified assumptions.
+
+Other sources were reviewed but not imported: SustainDC workload traces are aggregate CPU profiles rather than task jobs; the Google 2019 cluster trace does not offer the GPU demand needed here; MIT Supercloud has 460,497 jobs including 98,177 GPU-request jobs but a terabyte-scale dataset, which is unnecessary for this phase. Alibaba 2025/2026 traces are specialized/newer formats that need separate schema, date, and terms review.
+
+### Carbon alignment review
+
+Current local data contains complete 2023 hourly direct gCO₂e/kWh profiles for NYISO, CAISO and ERCOT only. The current SustainCluster carbon README describes 2021–2024 coverage; the release summary broadly describes environmental inputs from 2020–2024. This documentation discrepancy is not evidence of a validated 2020 three-zone series. Historical [WattTime MOER](https://legacy-docs.watttime.org/#historical-emissions) is a possible 5-minute marginal signal in lb CO₂/MWh, but historical API access is subscriber-restricted. The public [CAISO 2019–2020 MEF/AEF dataset](https://data.mendeley.com/datasets/7w87xy5pwj/1) is CC BY 4.0 but reports regressed month-hour factors for California only; it is not interchangeable with a measured hourly average CI for all regions. Google's [2020 region-carbon file](https://github.com/GoogleCloudPlatform/region-carbon-info/blob/main/data/yearly/2020.csv) is annual lifecycle intensity by Google Cloud region, not an hourly ISO-mapped profile. None was substituted, and no missing values were inferred.
+
+The primary Alibaba dataset’s top-level README encourages research/study use and citation but does not state a standard license identifier. SustainCluster documentation describes the source in CC BY 4.0 terms; this attribution is retained as a secondary-source statement, not treated as a verified license grant from Alibaba. For that reason, raw and derived trace records are not included in the public release. Obtain the workload only from the [official Alibaba Cluster Trace repository](https://github.com/alibaba/clusterdata) and verify applicable terms directly before any redistribution. Electricity Maps carbon files and trace-derived Phase 3–3.3 result folders are likewise excluded pending confirmation of their original data terms.
+

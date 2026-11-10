@@ -1,0 +1,24 @@
+{
+  "source_results": "results\\research_alignment_v4_final_confirmation\\final_summary.json",
+  "source_sha256": "a3d826d7a016eba048171d1432aced1ebee5d590e237fafe8c517f2c2c9762aa",
+  "source_status": "complete_synthetic_confirmatory_evaluation",
+  "chart_files": [
+    "carbon_emissions.pdf",
+    "carbon_emissions.png",
+    "carbon_emissions.svg",
+    "carbon_per_completed_task.pdf",
+    "carbon_per_completed_task.png",
+    "carbon_per_completed_task.svg",
+    "completion_sla.pdf",
+    "completion_sla.png",
+    "completion_sla.svg",
+    "energy_consumption.pdf",
+    "energy_consumption.png",
+    "energy_consumption.svg",
+    "latency_tradeoff.pdf",
+    "latency_tradeoff.png",
+    "latency_tradeoff.svg"
+  ],
+  "render_script": "tools\\render_final_confirmation_charts.py",
+  "note": "Charts visualize saved v4 final confirmation only; no fresh simulation or evaluation performed."
+}

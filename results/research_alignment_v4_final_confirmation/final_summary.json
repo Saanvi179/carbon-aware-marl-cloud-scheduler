@@ -1,0 +1,938 @@
+{
+  "study": "Research alignment v4: final confirmation on fresh synthetic holdout",
+  "status": "complete_synthetic_confirmatory_evaluation",
+  "created_utc": "2026-11-02T05:19:49.158677+00:00",
+  "protocol_amendment_sha256": "89c57c9216449fb266b08cedbca676a68d4d1231e3b803cacae5319c80fa9bd5",
+  "seed_manifest": "seed_manifest.json",
+  "frozen_config": "frozen_evaluation_config.json",
+  "methods": [
+    "A-MARL-derived IPPO (fastest-execution SPT)",
+    "Carbon-aware latency-bounded SPT (20%)"
+  ],
+  "allowance_fraction": 0.2,
+  "training_launched": false,
+  "test_workloads_evaluated_once_per_condition": true,
+  "heldout_data_synthetic": true,
+  "real_world_generalization_claim": false,
+  "runs": 180,
+  "matched_pairs": 90,
+  "summary": {
+    "per_method": {
+      "A-MARL-derived IPPO (fastest-execution SPT)": {
+        "carbon_gco2e": {
+          "n_pairs": 90,
+          "mean": 749.3622106250118,
+          "ci95": [
+            583.3278628106392,
+            939.8233284952948
+          ],
+          "upper_one_sided_95": 907.3020570204892,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 90,
+          "mean": 33.112616954153474,
+          "ci95": [
+            25.274399891535207,
+            41.77797581330049
+          ],
+          "upper_one_sided_95": 40.33310902416603,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "energy_kwh": {
+          "n_pairs": 90,
+          "mean": 2.3385210758431443,
+          "ci95": [
+            1.8408155213594573,
+            2.8904047855020663
+          ],
+          "upper_one_sided_95": 2.8038949041410217,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "completion_rate": {
+          "n_pairs": 90,
+          "mean": 0.9583333333333334,
+          "ci95": [
+            0.9291666666666667,
+            0.9833333333333334
+          ],
+          "upper_one_sided_95": 0.9800925925925926,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejections": {
+          "n_pairs": 90,
+          "mean": 1.0,
+          "ci95": [
+            0.3888888888888889,
+            1.7
+          ],
+          "upper_one_sided_95": 1.5888888888888888,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejection_rate": {
+          "n_pairs": 90,
+          "mean": 0.041666666666666664,
+          "ci95": [
+            0.016203703703703703,
+            0.07037037037037037
+          ],
+          "upper_one_sided_95": 0.06574074074074074,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "sla_violations": {
+          "n_pairs": 90,
+          "mean": 1.0,
+          "ci95": [
+            0.3888888888888889,
+            1.711111111111111
+          ],
+          "upper_one_sided_95": 1.5888888888888888,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 90,
+          "mean": 328.9445654656711,
+          "ci95": [
+            282.2045693901114,
+            378.33601846099464
+          ],
+          "upper_one_sided_95": 370.58277730942376,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "total_latency_seconds": {
+          "n_pairs": 90,
+          "mean": 7457.690686286999,
+          "ci95": [
+            6548.508489357892,
+            8432.538555928648
+          ],
+          "upper_one_sided_95": 8262.32819856651,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "deferrals": {
+          "n_pairs": 90,
+          "mean": 3.1777777777777776,
+          "ci95": [
+            1.7444444444444445,
+            4.8
+          ],
+          "upper_one_sided_95": 4.5,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_count": {
+          "n_pairs": 90,
+          "mean": 14.155555555555555,
+          "ci95": [
+            12.033333333333333,
+            16.322222222222223
+          ],
+          "upper_one_sided_95": 15.977777777777778,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_rate": {
+          "n_pairs": 90,
+          "mean": 0.5295379302450777,
+          "ci95": [
+            0.44312174855705433,
+            0.6251020721857581
+          ],
+          "upper_one_sided_95": 0.6091631906455784,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        }
+      },
+      "Carbon-aware latency-bounded SPT (20%)": {
+        "carbon_gco2e": {
+          "n_pairs": 90,
+          "mean": 713.5664695709011,
+          "ci95": [
+            551.5255481852041,
+            893.7641336078799
+          ],
+          "upper_one_sided_95": 863.0850031941859,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 90,
+          "mean": 31.22238212153251,
+          "ci95": [
+            23.747185063270713,
+            39.66978398360912
+          ],
+          "upper_one_sided_95": 38.163011790969435,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "energy_kwh": {
+          "n_pairs": 90,
+          "mean": 2.4210637003089244,
+          "ci95": [
+            1.9037083629718168,
+            2.992076583516674
+          ],
+          "upper_one_sided_95": 2.8987972135483298,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "completion_rate": {
+          "n_pairs": 90,
+          "mean": 0.9648148148148148,
+          "ci95": [
+            0.9398148148148148,
+            0.987037037037037
+          ],
+          "upper_one_sided_95": 0.9837962962962963,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejections": {
+          "n_pairs": 90,
+          "mean": 0.8444444444444444,
+          "ci95": [
+            0.3111111111111111,
+            1.4666666666666666
+          ],
+          "upper_one_sided_95": 1.3555555555555556,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejection_rate": {
+          "n_pairs": 90,
+          "mean": 0.03518518518518519,
+          "ci95": [
+            0.013425925925925924,
+            0.060648148148148145
+          ],
+          "upper_one_sided_95": 0.056018518518518516,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "sla_violations": {
+          "n_pairs": 90,
+          "mean": 0.8444444444444444,
+          "ci95": [
+            0.3111111111111111,
+            1.4444444444444444
+          ],
+          "upper_one_sided_95": 1.3333333333333333,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 90,
+          "mean": 333.8484993869584,
+          "ci95": [
+            286.4603673258887,
+            385.1972207194529
+          ],
+          "upper_one_sided_95": 377.0208237791059,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "total_latency_seconds": {
+          "n_pairs": 90,
+          "mean": 7633.817530084893,
+          "ci95": [
+            6691.733242989224,
+            8643.252405054467
+          ],
+          "upper_one_sided_95": 8485.836050203701,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "deferrals": {
+          "n_pairs": 90,
+          "mean": 3.2,
+          "ci95": [
+            1.6888888888888889,
+            4.866666666666666
+          ],
+          "upper_one_sided_95": 4.6,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_count": {
+          "n_pairs": 90,
+          "mean": 14.188888888888888,
+          "ci95": [
+            12.044444444444444,
+            16.444444444444443
+          ],
+          "upper_one_sided_95": 16.08888888888889,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_rate": {
+          "n_pairs": 90,
+          "mean": 0.5301006721215686,
+          "ci95": [
+            0.4420265110268491,
+            0.6308587608832706
+          ],
+          "upper_one_sided_95": 0.612019481987981,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        }
+      }
+    },
+    "paired_proposed_minus_base": {
+      "carbon_gco2e": {
+        "n_pairs": 90,
+        "mean": -35.795741054110685,
+        "ci95": [
+          -56.88936458235625,
+          -15.268775297388562
+        ],
+        "upper_one_sided_95": -18.907288306824043,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": -35.795741054110685,
+          "p_value": 0.0029,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      },
+      "carbon_gco2e_per_completed": {
+        "n_pairs": 90,
+        "mean": -1.8902348326209641,
+        "ci95": [
+          -3.0867057787225507,
+          -0.9300952097263937
+        ],
+        "upper_one_sided_95": -1.0628184459567955,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": -1.8902348326209641,
+          "p_value": 0.0044,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      },
+      "energy_kwh": {
+        "n_pairs": 90,
+        "mean": 0.08254262446578045,
+        "ci95": [
+          0.04250215215979065,
+          0.13675001597774208
+        ],
+        "upper_one_sided_95": 0.12556172795968856,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": 0.08254262446578045,
+          "p_value": 0.001,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      },
+      "completion_rate": {
+        "n_pairs": 90,
+        "mean": 0.006481481481481477,
+        "ci95": [
+          -0.0009259259259259226,
+          0.015740740740740732
+        ],
+        "upper_one_sided_95": 0.01435185185185184,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": 0.006481481481481477,
+          "p_value": 0.16,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      },
+      "rejections": {
+        "n_pairs": 90,
+        "mean": -0.15555555555555556,
+        "ci95": [
+          -0.3888888888888889,
+          0.022222222222222223
+        ],
+        "upper_one_sided_95": 0,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": -0.15555555555555556,
+          "p_value": 0.1653,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      },
+      "rejection_rate": {
+        "n_pairs": 90,
+        "mean": -0.006481481481481481,
+        "ci95": [
+          -0.01574074074074074,
+          0.0009259259259259259
+        ],
+        "upper_one_sided_95": 0.0,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": -0.006481481481481481,
+          "p_value": 0.1559,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        },
+        "one_sided_service_noninferiority_upper_95": 0.0,
+        "noninferiority_margin": 0.0,
+        "noninferiority_established_by_ci": true,
+        "wild_cluster_test_noninferiority": {
+          "mean_paired_difference": -0.006481481481481481,
+          "p_value": 0.0777,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "less",
+          "replicates": 9999
+        }
+      },
+      "sla_violations": {
+        "n_pairs": 90,
+        "mean": -0.15555555555555556,
+        "ci95": [
+          -0.3888888888888889,
+          0.022222222222222223
+        ],
+        "upper_one_sided_95": 0,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": -0.15555555555555556,
+          "p_value": 0.164,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        },
+        "one_sided_service_noninferiority_upper_95": 0,
+        "noninferiority_margin": 0.0,
+        "noninferiority_established_by_ci": true,
+        "wild_cluster_test_noninferiority": {
+          "mean_paired_difference": -0.15555555555555556,
+          "p_value": 0.0709,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "less",
+          "replicates": 9999
+        }
+      },
+      "mean_latency_seconds": {
+        "n_pairs": 90,
+        "mean": 4.9039339212873045,
+        "ci95": [
+          3.109770840399452,
+          7.022640480846347
+        ],
+        "upper_one_sided_95": 6.635483872098657,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": 4.9039339212873045,
+          "p_value": 0.0004,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      },
+      "total_latency_seconds": {
+        "n_pairs": 90,
+        "mean": 176.12684379789422,
+        "ci95": [
+          75.21131269635329,
+          310.87900601059476
+        ],
+        "upper_one_sided_95": 283.05567847984395,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": 176.12684379789422,
+          "p_value": 0.0116,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      },
+      "deferrals": {
+        "n_pairs": 90,
+        "mean": 0.022222222222222223,
+        "ci95": [
+          -0.6888888888888889,
+          0.7333333333333333
+        ],
+        "upper_one_sided_95": 0.6222222222222222,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": 0.022222222222222223,
+          "p_value": 0.919,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      },
+      "intervention_count": {
+        "n_pairs": 90,
+        "mean": 0.03333333333333333,
+        "ci95": [
+          -0.37777777777777777,
+          0.3888888888888889
+        ],
+        "upper_one_sided_95": 0.3333333333333333,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": 0.03333333333333333,
+          "p_value": 0.8315,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      },
+      "intervention_rate": {
+        "n_pairs": 90,
+        "mean": 0.000562741876490997,
+        "ci95": [
+          -0.02338035686797019,
+          0.020283575033969447
+        ],
+        "upper_one_sided_95": 0.017140410616587855,
+        "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+        "bootstrap_replicates": 10000,
+        "wild_cluster_test_two_sided": {
+          "mean_paired_difference": 0.000562741876490997,
+          "p_value": 0.9286,
+          "test": "two-way crossed wild-cluster bootstrap under zero-mean null (policy seed and workload instance clusters)",
+          "alternative": "two-sided",
+          "replicates": 9999
+        }
+      }
+    },
+    "paired_by_family": {
+      "bursty": {
+        "carbon_gco2e": {
+          "n_pairs": 30,
+          "mean": -29.8047254634488,
+          "ci95": [
+            -58.29242381225858,
+            -0.07169494384081455
+          ],
+          "upper_one_sided_95": -4.910006658445794,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 30,
+          "mean": -1.2418635609770337,
+          "ci95": [
+            -2.4190929180870433,
+            -0.023688343485962684
+          ],
+          "upper_one_sided_95": -0.23914803171309654,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "energy_kwh": {
+          "n_pairs": 30,
+          "mean": 0.06105020439713574,
+          "ci95": [
+            0.031890312928589355,
+            0.09400970842882801
+          ],
+          "upper_one_sided_95": 0.08826084038425162,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "completion_rate": {
+          "n_pairs": 30,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "upper_one_sided_95": 0.0,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejections": {
+          "n_pairs": 30,
+          "mean": 0.0,
+          "ci95": [
+            0,
+            0
+          ],
+          "upper_one_sided_95": 0,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejection_rate": {
+          "n_pairs": 30,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "upper_one_sided_95": 0.0,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "sla_violations": {
+          "n_pairs": 30,
+          "mean": 0.0,
+          "ci95": [
+            0,
+            0
+          ],
+          "upper_one_sided_95": 0,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 30,
+          "mean": 2.8786223507432256,
+          "ci95": [
+            1.57478799747205,
+            4.248788607660502
+          ],
+          "upper_one_sided_95": 4.034483878964248,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "total_latency_seconds": {
+          "n_pairs": 30,
+          "mean": 69.0869364178375,
+          "ci95": [
+            38.114257754058784,
+            102.20424217992617
+          ],
+          "upper_one_sided_95": 97.05680006326381,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "deferrals": {
+          "n_pairs": 30,
+          "mean": -0.4,
+          "ci95": [
+            -1.2,
+            0
+          ],
+          "upper_one_sided_95": 0,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_count": {
+          "n_pairs": 30,
+          "mean": 0.0,
+          "ci95": [
+            -0.2,
+            0.2
+          ],
+          "upper_one_sided_95": 0.16666666666666666,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_rate": {
+          "n_pairs": 30,
+          "mean": 0.00730409012018208,
+          "ci95": [
+            -0.002777777777777779,
+            0.027402495333529824
+          ],
+          "upper_one_sided_95": 0.02221873464976914,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        }
+      },
+      "diverse": {
+        "carbon_gco2e": {
+          "n_pairs": 30,
+          "mean": -59.48022952457451,
+          "ci95": [
+            -97.81749969107862,
+            -28.24580863984451
+          ],
+          "upper_one_sided_95": -34.479352244292755,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 30,
+          "mean": -3.522058200768322,
+          "ci95": [
+            -5.803325177824099,
+            -1.617724371392878
+          ],
+          "upper_one_sided_95": -1.9114032248166717,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "energy_kwh": {
+          "n_pairs": 30,
+          "mean": 0.11953356749444435,
+          "ci95": [
+            0.017494396069958996,
+            0.2506813587061726
+          ],
+          "upper_one_sided_95": 0.2234549482251025,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "completion_rate": {
+          "n_pairs": 30,
+          "mean": 0.01388888888888888,
+          "ci95": [
+            -0.0055555555555555506,
+            0.03749999999999997
+          ],
+          "upper_one_sided_95": 0.03194444444444443,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejections": {
+          "n_pairs": 30,
+          "mean": -0.3333333333333333,
+          "ci95": [
+            -0.9,
+            0.13333333333333333
+          ],
+          "upper_one_sided_95": 0.06666666666666667,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejection_rate": {
+          "n_pairs": 30,
+          "mean": -0.013888888888888888,
+          "ci95": [
+            -0.03749999999999999,
+            0.005555555555555555
+          ],
+          "upper_one_sided_95": 0.0027777777777777775,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "sla_violations": {
+          "n_pairs": 30,
+          "mean": -0.3333333333333333,
+          "ci95": [
+            -0.9,
+            0.13333333333333333
+          ],
+          "upper_one_sided_95": 0.06666666666666667,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 30,
+          "mean": 7.595292303784584,
+          "ci95": [
+            3.9377021715792635,
+            11.53322601868528
+          ],
+          "upper_one_sided_95": 10.89013255558556,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "total_latency_seconds": {
+          "n_pairs": 30,
+          "mean": 319.9731217391303,
+          "ci95": [
+            78.7843378421899,
+            629.9461919484703
+          ],
+          "upper_one_sided_95": 566.1146049597421,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "deferrals": {
+          "n_pairs": 30,
+          "mean": -0.43333333333333335,
+          "ci95": [
+            -1.8666666666666667,
+            0.8666666666666667
+          ],
+          "upper_one_sided_95": 0.6,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_count": {
+          "n_pairs": 30,
+          "mean": 0.2,
+          "ci95": [
+            -0.5333333333333333,
+            0.8
+          ],
+          "upper_one_sided_95": 0.7,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_rate": {
+          "n_pairs": 30,
+          "mean": 0.012593836860969182,
+          "ci95": [
+            -0.030400405702593326,
+            0.051578726143888406
+          ],
+          "upper_one_sided_95": 0.0439482003021693,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        }
+      },
+      "variable": {
+        "carbon_gco2e": {
+          "n_pairs": 30,
+          "mean": -18.10226817430874,
+          "ci95": [
+            -45.87263078572581,
+            16.319283718008354
+          ],
+          "upper_one_sided_95": 10.98797272608962,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 30,
+          "mean": -0.9067827361175369,
+          "ci95": [
+            -1.9223574925827838,
+            0.29776454414215436
+          ],
+          "upper_one_sided_95": 0.0991305142151269,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "energy_kwh": {
+          "n_pairs": 30,
+          "mean": 0.06704410150576127,
+          "ci95": [
+            0.03308085019855959,
+            0.12520369247736637
+          ],
+          "upper_one_sided_95": 0.11191754525205765,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "completion_rate": {
+          "n_pairs": 30,
+          "mean": 0.0055555555555555506,
+          "ci95": [
+            0.0,
+            0.016666666666666653
+          ],
+          "upper_one_sided_95": 0.013888888888888876,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejections": {
+          "n_pairs": 30,
+          "mean": -0.13333333333333333,
+          "ci95": [
+            -0.4,
+            0
+          ],
+          "upper_one_sided_95": 0,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "rejection_rate": {
+          "n_pairs": 30,
+          "mean": -0.005555555555555555,
+          "ci95": [
+            -0.016666666666666666,
+            0.0
+          ],
+          "upper_one_sided_95": 0.0,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "sla_violations": {
+          "n_pairs": 30,
+          "mean": -0.13333333333333333,
+          "ci95": [
+            -0.4,
+            0
+          ],
+          "upper_one_sided_95": 0,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 30,
+          "mean": 4.237887109334104,
+          "ci95": [
+            1.8226410470822685,
+            7.952926122896697
+          ],
+          "upper_one_sided_95": 7.096889407104035,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "total_latency_seconds": {
+          "n_pairs": 30,
+          "mean": 139.32047323671486,
+          "ci95": [
+            43.150315748792124,
+            319.8343886634459
+          ],
+          "upper_one_sided_95": 267.5353618679548,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "deferrals": {
+          "n_pairs": 30,
+          "mean": 0.9,
+          "ci95": [
+            -0.03333333333333333,
+            2.1666666666666665
+          ],
+          "upper_one_sided_95": 1.9666666666666666,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_count": {
+          "n_pairs": 30,
+          "mean": -0.1,
+          "ci95": [
+            -0.9,
+            0.6666666666666666
+          ],
+          "upper_one_sided_95": 0.5333333333333333,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        },
+        "intervention_rate": {
+          "n_pairs": 30,
+          "mean": -0.01820970135167827,
+          "ci95": [
+            -0.05719043374078381,
+            0.019016799292661375
+          ],
+          "upper_one_sided_95": 0.013329319467250515,
+          "ci_method": "two-factor crossed percentile bootstrap over workload instances and policy seeds",
+          "bootstrap_replicates": 10000
+        }
+      }
+    }
+  },
+  "artifact_paths": {
+    "run_metrics": "run_metrics.jsonl",
+    "decision_traces": "decision_traces.jsonl",
+    "task_outcomes": "task_outcomes.jsonl"
+  }
+}

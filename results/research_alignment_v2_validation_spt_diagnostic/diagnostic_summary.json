@@ -1,0 +1,880 @@
+{
+  "study": "Validation-only matched intervention replay: A-MARL-derived IPPO SPT vs carbon-aware latency-bounded SPT",
+  "created_utc": "2026-11-02T05:03:49.418795+00:00",
+  "status": "validation_diagnostic_only_not_final_test_evidence",
+  "method": {
+    "checkpoint_source": "existing proposed_epsilon_0 checkpoints from research_alignment_v1, one checkpoint per policy seed reused unchanged across all conditions",
+    "same_conditions": "same validation family/seed workload, dynamic synthetic 512-slot carbon profile, environment parameters, policy checkpoint, entropy threshold, intervention probability and stochastic action seed within each matched pair",
+    "inference": "stochastic policy actions enabled; SPT entropy trigger active; no optimizer updates",
+    "base_rule": "existing IPPOScheduler._spt_destination: minimum execution time among feasible destinations; this is the repository's cloud mapping of shortest processing time",
+    "proposed_rule": "minimum total migration plus execution latency among feasible destinations, then minimum estimated carbon among candidates within allowance",
+    "allowance_candidates": [
+      0.0,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "workload_families": [
+      "variable",
+      "diverse",
+      "bursty"
+    ],
+    "validation_seeds": [
+      74101,
+      74102,
+      74103,
+      74104
+    ],
+    "policy_seeds": [
+      7,
+      19,
+      42,
+      73,
+      101
+    ],
+    "runs_per_condition": 60,
+    "heldout_test_used": false,
+    "training_launched": false,
+    "actual_emissions_definition": "episode totals are final integrated region emissions from simulator assignments; each placement candidate carbon is a pre-assignment marginal estimate, not a separately measured realized task emission"
+  },
+  "summary": {
+    "by_condition": {
+      "A-MARL-derived SPT (fastest execution)": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": 607.6283599409534,
+          "ci95": [
+            462.6608363931558,
+            773.3730957609804
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": 25.68419776617421,
+          "ci95": [
+            19.499110124685625,
+            32.55600096481925
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 1.9532761872909028,
+          "ci95": [
+            1.5012125157377323,
+            2.4413441083541003
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.9861111111111112,
+          "ci95": [
+            0.9645833333333333,
+            1.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": 0.013888888888888888,
+          "ci95": [
+            0.0,
+            0.035416666666666666
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": 0.3333333333333333,
+          "ci95": [
+            0,
+            0.8333333333333334
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": 307.48150525388144,
+          "ci95": [
+            252.76739661943148,
+            367.1427206593178
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": 1.3833333333333333,
+          "ci95": [
+            0.38333333333333336,
+            2.816666666666667
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": 0.6257250080764933,
+          "ci95": [
+            0.5071633264564299,
+            0.7463995726495727
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      },
+      "Carbon-aware SPT, allowance=0%": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": 607.7786168569912,
+          "ci95": [
+            462.9294697497276,
+            773.673609593056
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": 25.690458471009123,
+          "ci95": [
+            19.499110124685625,
+            32.56182123268145
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 1.953355446550162,
+          "ci95": [
+            1.5012125157377323,
+            2.4415026268726185
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.9861111111111112,
+          "ci95": [
+            0.9645833333333333,
+            1.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": 0.013888888888888888,
+          "ci95": [
+            0.0,
+            0.035416666666666666
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": 0.3333333333333333,
+          "ci95": [
+            0,
+            0.8333333333333334
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": 307.47337450508917,
+          "ci95": [
+            252.76739661943148,
+            367.0776746689796
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": 1.3833333333333333,
+          "ci95": [
+            0.38333333333333336,
+            2.816666666666667
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": 0.6257250080764933,
+          "ci95": [
+            0.5071633264564299,
+            0.7463995726495727
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      },
+      "Carbon-aware SPT, allowance=5%": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": 607.7786168569912,
+          "ci95": [
+            462.9294697497276,
+            773.673609593056
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": 25.690458471009123,
+          "ci95": [
+            19.499110124685625,
+            32.56182123268145
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 1.953355446550162,
+          "ci95": [
+            1.5012125157377323,
+            2.4415026268726185
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.9861111111111112,
+          "ci95": [
+            0.9645833333333333,
+            1.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": 0.013888888888888888,
+          "ci95": [
+            0.0,
+            0.035416666666666666
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": 0.3333333333333333,
+          "ci95": [
+            0,
+            0.8333333333333334
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": 307.47337450508917,
+          "ci95": [
+            252.76739661943148,
+            367.0776746689796
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": 1.3833333333333333,
+          "ci95": [
+            0.38333333333333336,
+            2.816666666666667
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": 0.6257250080764933,
+          "ci95": [
+            0.5071633264564299,
+            0.7463995726495727
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      },
+      "Carbon-aware SPT, allowance=10%": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": 609.6806502927258,
+          "ci95": [
+            461.3847603504159,
+            772.3439930052315
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": 25.66601278706125,
+          "ci95": [
+            19.43225446827335,
+            32.399505514287554
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 2.009271210625114,
+          "ci95": [
+            1.5220568559609928,
+            2.5319963503999423
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.9888888888888889,
+          "ci95": [
+            0.9680555555555556,
+            1.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": 0.011111111111111112,
+          "ci95": [
+            0.0,
+            0.03194444444444444
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": 0.26666666666666666,
+          "ci95": [
+            0,
+            0.7666666666666667
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": 308.6549803839449,
+          "ci95": [
+            253.05268201355037,
+            369.1657705550508
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": 1.3666666666666667,
+          "ci95": [
+            0.4166666666666667,
+            2.7666666666666666
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": 0.6296829116033624,
+          "ci95": [
+            0.5142177029899772,
+            0.7474434129089301
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      },
+      "Carbon-aware SPT, allowance=20%": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": 575.3176908131979,
+          "ci95": [
+            430.895753564996,
+            733.1503575782036
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": 24.308350133275404,
+          "ci95": [
+            18.203184292633917,
+            30.86754162730019
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 2.050294244531063,
+          "ci95": [
+            1.5620302593294875,
+            2.5684333311634013
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.9861111111111112,
+          "ci95": [
+            0.9638888888888889,
+            1.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": 0.013888888888888888,
+          "ci95": [
+            0.0,
+            0.03611111111111111
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": 0.3333333333333333,
+          "ci95": [
+            0,
+            0.8666666666666667
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": 312.43195680172414,
+          "ci95": [
+            256.0681601880104,
+            373.69423376298283
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": 1.75,
+          "ci95": [
+            0.5666666666666667,
+            3.25
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": 0.6172209270843934,
+          "ci95": [
+            0.4990569594696116,
+            0.7375744131034868
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      }
+    },
+    "paired_differences_vs_base": {
+      "A-MARL-derived SPT (fastest execution)": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      },
+      "Carbon-aware SPT, allowance=0%": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": 0.1502569160377997,
+          "ci95": [
+            0.0,
+            0.6761561221700958
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": 0.006260704834908282,
+          "ci95": [
+            0.0,
+            0.028173171757086734
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 7.9259259259253e-05,
+          "ci95": [
+            0.0,
+            0.00035666666666660517
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": -0.008130748792269552,
+          "ci95": [
+            -0.03658836956520872,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      },
+      "Carbon-aware SPT, allowance=5%": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": 0.1502569160377997,
+          "ci95": [
+            0.0,
+            0.6761561221700958
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": 0.006260704834908282,
+          "ci95": [
+            0.0,
+            0.028173171757086734
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 7.9259259259253e-05,
+          "ci95": [
+            0.0,
+            0.00035666666666660517
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": -0.008130748792269552,
+          "ci95": [
+            -0.03658836956520872,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": 0,
+          "ci95": [
+            0,
+            0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      },
+      "Carbon-aware SPT, allowance=10%": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": 2.052290351772357,
+          "ci95": [
+            -20.382831068807157,
+            31.2917793979891
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": -0.01818497911296433,
+          "ci95": [
+            -0.8695189837942457,
+            0.9438913110371178
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 0.055995023334211316,
+          "ci95": [
+            -0.013194816620221504,
+            0.2038651625274296
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.0027777777777777753,
+          "ci95": [
+            0.0,
+            0.010416666666666657
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": -0.0027777777777777775,
+          "ci95": [
+            -0.010416666666666666,
+            0.0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": -0.06666666666666667,
+          "ci95": [
+            -0.25,
+            0
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": 1.17347513006345,
+          "ci95": [
+            -0.5551856334505767,
+            4.132578419099634
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": -0.016666666666666666,
+          "ci95": [
+            -0.25,
+            0.15
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": 0.003957903526869044,
+          "ci95": [
+            -0.003591954022988509,
+            0.015162958050889085
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      },
+      "Carbon-aware SPT, allowance=20%": {
+        "carbon_gco2e": {
+          "n_pairs": 60,
+          "mean": -32.310669127755446,
+          "ci95": [
+            -65.86589157272518,
+            6.785803634467955
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "carbon_gco2e_per_completed": {
+          "n_pairs": 60,
+          "mean": -1.3758476328988092,
+          "ci95": [
+            -2.6509397297575745,
+            -0.04370495410441579
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "energy_kwh": {
+          "n_pairs": 60,
+          "mean": 0.09701805724016009,
+          "ci95": [
+            0.021540867525597158,
+            0.23456606732093122
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "completion_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            -0.007638888888888882,
+            0.008333333333333326
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "rejection_rate": {
+          "n_pairs": 60,
+          "mean": 0.0,
+          "ci95": [
+            -0.008333333333333333,
+            0.007638888888888889
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "sla_violations": {
+          "n_pairs": 60,
+          "mean": 0,
+          "ci95": [
+            -0.2,
+            0.18333333333333332
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "mean_latency_seconds": {
+          "n_pairs": 60,
+          "mean": 4.950451547842683,
+          "ci95": [
+            2.202542799318271,
+            8.28687644416206
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "deferrals": {
+          "n_pairs": 60,
+          "mean": 0.36666666666666664,
+          "ci95": [
+            -0.23333333333333334,
+            1.0666666666666667
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        },
+        "intervention_rate": {
+          "n_pairs": 60,
+          "mean": -0.00850408099210009,
+          "ci95": [
+            -0.033522137758696904,
+            0.016587388567227277
+          ],
+          "method": "two-factor crossed percentile bootstrap over policy seeds and validation workloads"
+        }
+      }
+    }
+  },
+  "files": {
+    "run_metrics": "run_metrics.jsonl",
+    "candidate_decisions": "candidate_decisions.jsonl"
+  }
+}

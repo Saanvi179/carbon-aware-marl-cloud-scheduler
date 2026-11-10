@@ -1,0 +1,33 @@
+workloads_path: data/processed/phase32/phase32_workloads.json
+carbon_profiles_path: data/processed/phase3/carbon_profiles_2023.json
+slot_seconds: 900
+# Environment default for schedulers that do not define their own deferral budget.
+# Corrected 2h/4h MPC policies share a two-transition budget and can reserve a
+# retry directly at a later feasible slot inside their configured lookahead.
+max_deferrals: 2          # legacy env default: preserved for FCFS/Greedy/original MPC
+deadline_slack_seconds: 3600
+ingress_region: north
+offline_time_limit_seconds: 2
+milp_task_limit: 12
+milp_window_indices: [0, 4, 8, 12]
+
+# --- Original Phase 3.3 configurations (max_deferrals=2, bottlenecked to 30-min lookahead)
+forecast_horizons_hours: [2.0, 4.0]
+
+# --- Corrected Phase 3.3 configurations (distinct lookahead, shared defer budget)
+corrected_horizons:
+  - label: "Corrected MPC (2h)"
+    forecast_horizon_hours: 2.0
+    max_deferrals: 2     # same transition budget for a fair horizon comparison
+  - label: "Corrected MPC (4h)"
+    forecast_horizon_hours: 4.0
+    max_deferrals: 2     # one deferral can commit directly to a later target slot
+
+urgency_slack_threshold_seconds: 1800.0
+deferral_saving_threshold: 0.05
+congestion_weight: 0.02
+latency_weight: 0.01
+enable_reservations: true
+
+output_dir: results/phase33
+corrected_output_dir: results/phase33_corrected

@@ -1,0 +1,6 @@
+slot_seconds: 60
+max_deferrals: 2
+regions:
+  - {name: north, gpus: 8, cpu_cores: 64, memory_gb: 256, carbon_gco2e_kwh: 420, carbon_profile_gco2e_kwh: [420, 380, 460, 400], gpu_watts: 300, idle_watts: 100, pue: 1.20, execution_speed: 1.0}
+  - {name: west, gpus: 6, cpu_cores: 48, memory_gb: 192, carbon_gco2e_kwh: 180, carbon_profile_gco2e_kwh: [180, 220, 160, 210], gpu_watts: 280, idle_watts: 90, pue: 1.15, execution_speed: 1.15}
+  - {name: east, gpus: 10, cpu_cores: 80, memory_gb: 384, carbon_gco2e_kwh: 320, carbon_profile_gco2e_kwh: [320, 300, 360, 310], gpu_watts: 330, idle_watts: 110, pue: 1.25, execution_speed: 0.9}

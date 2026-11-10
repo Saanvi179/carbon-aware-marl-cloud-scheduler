@@ -1,0 +1,38 @@
+{
+  "selected_spt_latency_allowance_fraction": 0.2,
+  "selection_basis": "validation-only matched intervention replay",
+  "status": "frozen_candidate_pending_final_held_out_confirmation",
+  "paired_validation_delta_carbon_gco2e_per_completed": -1.3758476328988092,
+  "paired_validation_ci95": [
+    -2.6509397297575745,
+    -0.04370495410441579
+  ],
+  "paired_validation_delta_total_carbon_gco2e_per_run": -32.310669127755446,
+  "paired_validation_total_carbon_ci95": [
+    -65.86589157272518,
+    6.785803634467955
+  ],
+  "paired_validation_delta_energy_kwh_per_run": 0.09701805724016009,
+  "paired_validation_energy_ci95": [
+    0.021540867525597158,
+    0.23456606732093122
+  ],
+  "paired_validation_delta_mean_latency_seconds": 4.950451547842683,
+  "paired_validation_latency_ci95": [
+    2.202542799318271,
+    8.28687644416206
+  ],
+  "paired_validation_delta_completion_rate": 0.0,
+  "paired_validation_completion_ci95": [
+    -0.007638888888888882,
+    0.008333333333333326
+  ],
+  "paired_validation_delta_sla_violations_per_run": 0.0,
+  "paired_validation_sla_ci95": [
+    -0.2,
+    0.18333333333333332
+  ],
+  "rationale": "20% was the only tested allowance with a paired emissions-per-completed-task interval narrowly excluding zero. It reduced that metric by about 5.36% on average, with higher energy and latency. Completion and SLA differences were not clearly worse. Freeze for a separate final evaluation; do not claim superiority before that evaluation.",
+  "heldout_test_used_for_selection": false,
+  "final_superiority_claim": false
+}

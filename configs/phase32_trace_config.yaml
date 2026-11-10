@@ -1,0 +1,12 @@
+workloads_path: data/processed/phase32/phase32_workloads.json
+carbon_profiles_path: data/processed/phase3/carbon_profiles_2023.json
+slot_seconds: 900
+max_deferrals: 2
+deadline_slack_seconds: 3600
+ingress_region: north
+offline_time_limit_seconds: 2
+milp_task_limit: 12
+milp_window_indices: [0, 4, 8, 12]
+sensitivity_window_indices: [0, 12]
+carbon_replay_start_slot: 0
+output_dir: results/phase32

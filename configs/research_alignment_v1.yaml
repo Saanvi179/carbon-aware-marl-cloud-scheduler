@@ -1,0 +1,44 @@
+# Frozen common settings for the primary A-MARL-derived IPPO comparison.
+# Proposed allowance candidates are evaluated on validation workloads only.
+seed: 7
+episodes: 16
+tasks_per_episode: 24
+training_workload_seed_base: 74000
+workload_profile: phase25_bursty
+carbon_profile_mode: dynamic_synthetic
+observation_size: 54
+observation_ablation: none
+terminal_fallback_enabled: true
+update_epochs: 8
+hidden_size: 64
+actor_lr: 0.0003
+critic_lr: 0.001
+gamma: 0.99
+gae_lambda: 0.95
+clip_epsilon: 0.2
+entropy_coefficient: 0.002
+max_grad_norm: 0.5
+lambda_latency: 0.25
+lambda_sla: 0.5
+reward_carbon_weight: 1.0
+carbon_scale_g: 100.0
+carbon_clip: 2.0
+completion_bonus: 1.0
+rejection_penalty: 2.5
+defer_penalty: 0.1
+forced_defer_penalty: 1.5
+spt_entropy_fraction: 0.8
+spt_intervention_probability: 1.0
+spt_latency_allowance_fraction: 0.10
+include_spt_actor_updates: true
+slot_seconds: 60
+device: cpu
+checkpoint_every: 1
+output_dir: results/research_alignment_v1
+
+training_seeds: [7, 19, 42, 73, 101]
+validation_seeds: [74101, 74102, 74103, 74104]
+test_seeds: [75101, 75102, 75103, 75104, 75105, 75106]
+workload_families: [variable, diverse, bursty]
+allowance_candidates: [0.0, 0.05, 0.10, 0.20]
+bootstrap_replicates: 4000

@@ -1,0 +1,31 @@
+# Python bytecode and test/tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments and editor state
+.venv/
+venv/
+.idea/
+.vscode/
+
+# Streamlit local state
+.streamlit/secrets.toml
+
+# Third-party workload/carbon inputs are kept local until redistribution terms
+# are verified. See docs/PUBLICATION_NOTES.md and docs/DATA_SOURCES.md.
+/data/raw/phase3/
+/data/processed/phase3/
+/data/processed/phase32/
+
+# Trace-derived historical benchmark outputs are not redistributed with the
+# underlying data inputs. Synthetic final v4 confirmation results remain tracked.
+/results/phase3*/
+
+# Local-only metadata contains this machine's absolute paths. Publish the
+# separately generated path-safe companions instead.
+/results/research_alignment_v1/ui_policy_index.json
+/results/research_alignment_v1_smoke/ui_policy_index.json
+/results/research_alignment_v4_final_confirmation/run_metadata.json

@@ -1,0 +1,24 @@
+{
+  "command": "python -m experiments.run_research_alignment_v4_confirmation",
+  "test_command": "python -m unittest discover -s tests",
+  "test_outcome": "Ran 77 tests; OK",
+  "evaluation_completed_utc": "2026-11-02T10:49:49.158677+05:30",
+  "evaluation_run_count": 180,
+  "matched_pair_count": 90,
+  "method_run_counts": {
+    "A-MARL-derived IPPO (fastest-execution SPT)": 90,
+    "Carbon-aware latency-bounded SPT (20%)": 90
+  },
+  "no_retraining": true,
+  "new_holdout_evaluated_once_per_condition": true,
+  "reproducibility_integrity_checks": {
+    "seed_overlap_empty": true,
+    "protocol_hash_matches_manifest": true,
+    "runner_hash_matches_config": true,
+    "checkpoint_hashes_match": true,
+    "matched_run_keys_unique": true,
+    "no_duplicate_evaluations": true
+  },
+  "output_directory": "results/research_alignment_v4_final_confirmation",
+  "publication_note": "Path-safe companion; output_directory is repository-relative. Original local metadata remains unchanged."
+}

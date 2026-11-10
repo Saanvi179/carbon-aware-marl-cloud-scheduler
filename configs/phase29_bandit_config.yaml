@@ -1,0 +1,12 @@
+training_seeds: [17, 29, 41]
+heldout_workload_seeds: [29101, 29102, 29103, 29104, 29105, 29106]
+episodes_per_seed: 12
+tasks_per_episode: 12
+training_workload_seed_base: 29000
+linucb_alpha: 0.8
+ridge: 1.0
+carbon_scale_g: 100.0
+latency_weight: 0.25
+carbon_profile_mode: dynamic_synthetic
+workload_profile: phase25_bursty
+output_dir: results/phase29_final

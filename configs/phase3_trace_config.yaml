@@ -1,0 +1,11 @@
+slot_seconds: 900
+max_deferrals: 2
+carbon_profiles_path: data/processed/phase3/carbon_profiles_2023.json
+workloads_path: data/processed/phase3/alibaba_workloads.json
+output_dir: results/phase3
+offline_time_limit_seconds: 15
+trace_regions:
+  north: US-NY-NYIS
+  west: US-CAL-CISO
+  east: US-TEX-ERCO
+synthetic_workload_seeds: [31001, 31002, 31003]
